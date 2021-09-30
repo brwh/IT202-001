@@ -9,21 +9,18 @@
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
         });
-        function getCurrentSelection(it) {
+        function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection 
 
                 //Note: likely you'll want to call updateCurrentPage towards the end
-            ;cursor = it.innerText; 
-            updateCurrentPage(currentSelection);
             }, 100);
         }
-
-    onclick=updateCurrentPage('Login');
     </script>
     <style>
         /* TODO: make edits here */
+      
     nav {
         background-color: black;
         
@@ -76,6 +73,7 @@
    
     
     
+
     </style>
     <!-- make the necessary edits above this line -->
 
@@ -87,7 +85,7 @@
 </head>
 <!-- Do not edit anything below this line, doing so will lose points-->
 
-<body onload="check();updateCurrentPage('Start');">
+<body onload="check();updateCurrentPage('start');">
     <header>
         <h2>Problem 1</h2>
     </header>
