@@ -43,9 +43,9 @@
 
      - Password must be hashed (plain text passwords will lose points) ![image](https://user-images.githubusercontent.com/90637306/142955298-907c74e3-ee53-4041-9167-80a127aecd08.png)
 
-     - Email should be unique ![image](https://user-images.githubusercontent.com/90637306/142955335-7372f586-597e-4f18-a6df-005cbd30aa5e.png)
+     - Email should be unique ![image](https://user-images.githubusercontent.com/90637306/143134827-2f7a7b8f-e388-456e-b73c-e57d53fb5de9.png)
 
-     - Username should be unique ![image](https://user-images.githubusercontent.com/90637306/142955340-820afff7-032e-4af1-ae40-5b59ee24c33a.png)
+     - Username should be unique ![image](https://user-images.githubusercontent.com/90637306/143134836-5282363a-75be-4fcf-b702-7424a92097ad.png)
 
      - System should let user know if username or email is taken and allow the user to correct the error without wiping/clearing the form![image](https://user-images.githubusercontent.com/90637306/142955762-128f96d9-c81b-42fb-a970-6e1e1f12e4bd.png) ,   ![image](https://user-images.githubusercontent.com/90637306/142955731-a911d2f2-e3f7-479d-b2e2-fadb276fd1d9.png)
 / ![image](https://user-images.githubusercontent.com/90637306/142955480-9fe78718-6259-4062-97a0-0deeec433614.png) , ![image](https://user-images.githubusercontent.com/90637306/142955716-4a54bea9-f297-4ff7-9986-12b8a72f541c.png)
