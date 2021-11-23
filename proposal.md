@@ -3,7 +3,7 @@
 
 ## Github Link: https://github.com/brwh/IT202-001/tree/master/public_html (Prod Branch of Project Folder) 
 ## Project Board Link: https://github.com/brwh/IT202-001/projects/1
-## Website Link: https://dashboard.heroku.com/apps/bw286-prod (Heroku Prod of Project folder)
+## Website Link: https://bw286-prod.herokuapp.com/ (Heroku Prod of Project folder)
 ## Your Name: Brad Whitman
 
 <!--
