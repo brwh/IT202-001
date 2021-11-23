@@ -1,11 +1,16 @@
-<?php
-session_start();
-?>
+<html> 
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome!</title>
+<h1>Welcome to Whitty's Bank</h1>
+<body>  
+<form action="./index.php" class="form" method="POST">
+<input type ="text" id="uid" name = "uid" placeholder = "Username"> <br>
+<input type ="text" id="pw" name = "pw" placeholder = "Password"> <br>
+<input type ="submit" name = "submit" value="Login"> <br>
+<script>
+window.history.forward();
+</script>
+</form>
+</body>
 <style>
     body {
         background-color: beige;
@@ -15,30 +20,64 @@ session_start();
         font: 30px Verdana, Sans-Serif;
     }
 </style>
-<h1>Welcome to Whitty's Bank!</h1>
-<h2?> Please Login Below </h2>
-</head>
-<body>
-    <form action="other.php" method="post">        
-       <label style="display: inline-block">Email:  </label>
-       <input type="text" name="uid" style="margin-top: 1%;margin-bottom: 1%;"><br>
-       
-       <label style="margin-right: .45%;">Password: </label>
-       <input type="password" name="pw" style="margin-bottom: 1%;"><br>
-       <input type="submit" name="submit" value="Login" style='background-color: #42CBF7;font: 20px;border: none;' class="submit">
-       <input type="submit" name="submitNewUser" value="Create new account" style='background-color: #42CBF7;font: 30px;border: none;' class="submit">
-    </form>
+<a href="register.php">Create an Account</a> <br>
+</html>
+<?php
+include 'db.php';
+$error = False;
+session_start();
+$pdo = getDB();
 
-    <?php 
-    if (isset($_SESSION["error"])) { 
-        $error = $_SESSION["error"];
-        echo "<script type='text/javascript'>alert('$error');</script>";
+if(isset($_POST['submit']))//check if user exists in sql db
+{
+    
+    $user_or_email = $_POST['uid']; 
+    $pwd = $_POST['pw'];
+     
+    if (empty($user_or_email)){
+        echo '<script>alert("Missing Username")</script>';
+        $error = True;
+
+
     }
-    ?>
+   else if(empty($pwd)){
+        echo '<script>alert("Missing a password, please type one in")</script>';
+        $error = True;
+    }
 
-</body>
+
+    $statement = $pdo->query("SELECT * from `Users` where email = '$user_or_email' or username = '$user_or_email'");
+    $statement->execute();
+    if (!$error){
+    while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+
+        $username = $row['username'];
+        $email = $row['email'];
+        $hashword = $row['password'];
+    }
+    if(password_verify($pwd, $hashword)) {
+
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+
+
+        
+        header('Location: ./login.php');
+        
+    }
+    else {
+        echo '<script>alert("Incorrect Login Information")</script>';
+        
+    }
+
+    
+   
+}
+}
+?>
 </html>
 
-<?php
-unset($_SESSION["error"]);
-?>
+
+
+
+
