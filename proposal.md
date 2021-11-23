@@ -26,32 +26,59 @@
 **Milestone 1**
   - User will be able to register a new account
     - Form Fields
-      - Username, email, password, confirm password (other fields optional)
-      - Email is required and must be validated
-      - Username is required
-      - Confirm password’s match
+      - Username, email, password, confirm password (other fields optional) ![image](https://user-images.githubusercontent.com/90637306/142954878-30062c1d-ae6c-4958-96f9-9cdbfdc42c23.png)
+
+      - Email is required and must be validated - ![image](https://user-images.githubusercontent.com/90637306/142955041-e534a09d-04b1-4f0b-b4fc-f6885298ea5a.png)
+       ![image](https://user-images.githubusercontent.com/90637306/142955069-09a52d59-ad29-42a2-9fbe-37c343d086bd.png)
+
+      - Username is required ![image](https://user-images.githubusercontent.com/90637306/142955096-d80aefcd-e8c8-4189-aad3-2587fe63d6eb.png)
+        ![image](https://user-images.githubusercontent.com/90637306/142955104-80086a6a-c732-47e7-bef1-ceacf446d713.png)
+
+      - Confirm password’s match ![image](https://user-images.githubusercontent.com/90637306/142955129-44fb6878-4099-4811-8082-2ed4f919d613.png)
+      ![image](https://user-images.githubusercontent.com/90637306/142955244-87ea7895-a874-4864-93e4-c0f180d0b955.png)
+
+
     - Users Table
-      - Id, username, email, password (60 characters), created, modified
-     - Password must be hashed (plain text passwords will lose points)
-     - Email should be unique
-     - Username should be unique
-     - System should let user know if username or email is taken and allow the user to correct the error without wiping/clearing the form
+      - Id, username, email, password (60 characters), created, modified ![image](https://user-images.githubusercontent.com/90637306/142955295-6de7b48d-007b-4443-8e79-431c5efd0762.png)
+
+     - Password must be hashed (plain text passwords will lose points) ![image](https://user-images.githubusercontent.com/90637306/142955298-907c74e3-ee53-4041-9167-80a127aecd08.png)
+
+     - Email should be unique ![image](https://user-images.githubusercontent.com/90637306/142955335-7372f586-597e-4f18-a6df-005cbd30aa5e.png)
+
+     - Username should be unique ![image](https://user-images.githubusercontent.com/90637306/142955340-820afff7-032e-4af1-ae40-5b59ee24c33a.png)
+
+     - System should let user know if username or email is taken and allow the user to correct the error without wiping/clearing the form![image](https://user-images.githubusercontent.com/90637306/142955762-128f96d9-c81b-42fb-a970-6e1e1f12e4bd.png) ,   ![image](https://user-images.githubusercontent.com/90637306/142955731-a911d2f2-e3f7-479d-b2e2-fadb276fd1d9.png)
+/ ![image](https://user-images.githubusercontent.com/90637306/142955480-9fe78718-6259-4062-97a0-0deeec433614.png) , ![image](https://user-images.githubusercontent.com/90637306/142955716-4a54bea9-f297-4ff7-9986-12b8a72f541c.png)
+
+
+
         - The only fields that may be cleared are the password fields
 
     - User will be able to login to their account (given they enter the correct credentials)
       - Form
-        - User can login with email or username
+        - User can login with email or username, ![image](https://user-images.githubusercontent.com/90637306/142955802-bb89e6d0-eb99-48fc-8059-02ed852fe807.png)
+
+        
           - This can be done as a single field or as two separate fields
-        - Password is required
-     - User should see friendly error messages when an account either doesn’t exist or if passwords don’t match
+        - Password is required ![image](https://user-images.githubusercontent.com/90637306/142955819-f4dec7e4-0257-4ce7-b30e-0e9ff2b20246.png)
+
+     - User should see friendly error messages when an account either doesn’t exist or if passwords don’t match ![image](https://user-images.githubusercontent.com/90637306/142955913-a48e1855-e443-4d2d-b7ed-ee4df27f4d10.png)
+
      - Logging in should fetch the user’s details (and roles) and save them into the session.
-     - User will be directed to a landing page upon login
-      - This is a protected page (non-logged in users shouldn’t have access)
+     - User will be directed to a landing page upon login ![image](https://user-images.githubusercontent.com/90637306/142955937-2198b254-c1ff-4c50-89b1-573527d5c970.png)
+        ![image](https://user-images.githubusercontent.com/90637306/142955950-967b8f1b-86c4-4f3c-973c-b34b82064867.png)
+
+      - This is a protected page (non-logged in users shouldn’t have access) if you press back: ![image](https://user-images.githubusercontent.com/90637306/142955997-d4cfa7b8-95b6-4deb-8a7f-0837b90c6cdf.png)
+
       - This can be home, profile, a dashboard, etc
-   - User will be able to logout
-    - Logging out will redirect to login page
+   - User will be able to logout ![image](https://user-images.githubusercontent.com/90637306/142956020-f8a689c5-76fc-4c3c-b499-e3273f116902.png), ![image](https://user-images.githubusercontent.com/90637306/142956034-15ab015e-33a0-43d5-8f30-1ccf9a1fc37c.png)
+
+
+    - Logging out will redirect to login page ![image](https://user-images.githubusercontent.com/90637306/142956037-2e79b40e-f896-4897-83f8-6e00eb96470c.png)
+
     - User should see a message that they’ve successfully logged out
-    - Session should be destroyed (so the back button doesn’t allow them access back in)
+    - Session should be destroyed (so the back button doesn’t allow them access back in) ![image](https://user-images.githubusercontent.com/90637306/142956221-149b6359-42ba-4e01-a216-a1cbd17327de.png) - session is destroyed this is a WIP however
+
   - Basic security rules implemented
     - Authentication:
       - Function to check if user is logged in
