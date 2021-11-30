@@ -1,3 +1,4 @@
+
 <html> 
 
 <h1>Welcome to Whitty's Bank</h1>
@@ -6,6 +7,7 @@
 <input type ="text" id="uid" name = "uid" placeholder = "Username"> <br>
 <input type ="text" id="pw" name = "pw" placeholder = "Password"> <br>
 <input type ="submit" name = "submit" value="Login"> <br>
+<input type="hidden" name="redirurl" value="<? echo $_SERVER['HTTP_REFERER']; ?>" />
 <script>
 window.history.forward();
 </script>
@@ -23,9 +25,11 @@ window.history.forward();
 <a href="register.php">Create an Account</a> <br>
 </html>
 <?php
-include 'db.php';
-$error = False;
 session_start();
+include 'db.php';
+
+$error = False;
+
 $pdo = getDB();
 
 if(isset($_POST['submit']))//check if user exists in sql db
@@ -54,11 +58,25 @@ if(isset($_POST['submit']))//check if user exists in sql db
         $username = $row['username'];
         $email = $row['email'];
         $hashword = $row['password'];
+        $user_id = $row['id'];
+    }
+    $statement = $pdo->query("SELECT * from `UserRoles` where user_id = '$user_id'");
+    $statement->execute();
+    if (!$error){
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)){
+    
+            $userRoles = array();
+            array_push($userRoles, $row['name'] );
+        }
     }
     if(password_verify($pwd, $hashword)) {
+        include 'xferinfo.php';
 
+        $logged_in = true;
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
+        $_SESSION['login'] = $logged_in;
+        $_SESSION['user_id'] = $user_id;
 
 
         
