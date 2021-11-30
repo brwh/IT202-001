@@ -81,8 +81,10 @@
 
   - Basic security rules implemented
     - Authentication:
-      - Function to check if user is logged in
-      - Function should be called on appropriate pages that only allow logged in users
+      - Function to check if user is logged in 
+      - Function should be called on appropriate pages that only allow logged in users ![image](https://user-images.githubusercontent.com/90637306/143984383-6d0fb6f5-ad32-463d-9a79-09b45e9f6998.png)
+![image](https://user-images.githubusercontent.com/90637306/143984411-7e315ec1-89d2-4ce2-b37e-bfefa5c880d4.png)  - IF USER SOMEHOW REACHES MAIN DASHBOARD PAGE AND DO NOT HAVE A SESSION THEY WILL BE REDIRECTED TO INDEX.PHP
+
     - Roles/Authorization:
       - Have a roles table (see below)
  - Basic Roles implemented
@@ -91,7 +93,7 @@
   - Include a function to check if a user has a specific role (we won’t use it for this milestone but it should be usable in the future)
 - Site should have basic styles/theme applied; everything should be styled
   - I.e., forms/input, navigation bar, etc
-- Any output messages/errors should be “user friendly”
+- Any output messages/errors should be “user friendly” 
   - Any technical errors or debug output displayed will result in a loss of points
 - User will be able to see their profile
   - Email, username, etc
@@ -108,48 +110,68 @@
  - Project setup steps:
     - Create these as initial setup scripts in the sql folder
       - Create a system user if they don’t exist (this will never be logged into, it’s just to keep things working per system requirements)
-      - Create a world account in the Accounts table created below (if it doesn’t exist)
-        - Account_number must be “000000000000”
+      - Create a world account in the Accounts table created below (if it doesn’t exist) ![image](https://user-images.githubusercontent.com/90637306/143984543-5def9648-9d4d-4097-8a5f-76fb5f95fe4d.png)
+
+        - Account_number must be “000000000000” 
         - User_id must be the id of the system user
-        - Account type must be “world”
- - Create the Transactions table (see reference below)
+        - Account type must be “world” ![image](https://user-images.githubusercontent.com/90637306/143984581-43e5373b-b253-4ec9-ac19-6f6832bf29c1.png)
+
+ - Create the Transactions table (see reference below) ![image](https://user-images.githubusercontent.com/90637306/143984630-ce9fe97a-8474-42d5-b7c6-03a41f2e9f74.png)
+
  - Dashboard page
-  - Will have links for Create Account, My Accounts, Deposit, Withdraw Transfer, Profile
+  - Will have links for Create Account, My Accounts, Deposit, Withdraw Transfer, Profile ![image](https://user-images.githubusercontent.com/90637306/143984660-efc2047d-2974-4f3e-8284-43b974454fc9.png)
+
     - Links that don’t have pages yet should just have href=”#”, you’ll update them later
- - User will be able to create a checking account
-  - System will generate a unique 12 digit account number
+ - User will be able to create a checking account ![image](https://user-images.githubusercontent.com/90637306/143984686-4dbae453-ea24-4e1b-90e4-6761ab528011.png)
+
+  - System will generate a unique 12 digit account number ![image](https://user-images.githubusercontent.com/90637306/143984724-7292dd01-7a2e-40ee-99ef-da790f4d20d6.png)
+![image](https://user-images.githubusercontent.com/90637306/143984757-b5145875-a480-4605-8456-dd0550d58376.png) - first image is the function, second is showing how i will prevent collision
+
     - Options (strike out the option you won’t do):
       - Option 1: Generate a random 12 digit/character value; must regenerate if a duplicate collision occurs
-      - Option 2: Generate the number based on the id column; requires inserting a null first to get the last insert id, then update the record immediately after
+      - ~~Option 2: Generate the number based on the id column; requires inserting a null first to get the last insert id, then update the record immediately after~~
     - System will associate the account to the user
-    - Account type will be set as checking
-    - Will require a minimum deposit of $5 (from the world account)
-      - Entry will be recorded in the Transaction table as a transaction pair (per notes below)
-      - Account Balance will be updated based on SUM of BalanceChange of AccountSrc
+    - Account type will be set as checking 
+    - Will require a minimum deposit of $5 (from the world account) ![image](https://user-images.githubusercontent.com/90637306/143984981-6bdda981-79f5-4aea-ac04-b66b76463b7d.png)
+
+      - Entry will be recorded in the Transaction table as a transaction pair (per notes below) ![image](https://user-images.githubusercontent.com/90637306/143985466-ebfbc982-e69a-4af6-9b85-31e1532e92e6.png)
+
+      - Account Balance will be updated based on SUM of BalanceChange of AccountSrc 
      - User will see user-friendly error messages when appropriate
      - User will see user-friendly success message when account is created successfully
       - Redirect user to their Accounts page
 
- - User will be able to list their accounts
-  - Limit results to 5 for now
-  - Show account number, account type and balance
- - User will be able to click an account for more information (a.ka. Transaction History page)
-  - Show account number, account type, balance, opened/created date
+ - User will be able to list their accounts ![image](https://user-images.githubusercontent.com/90637306/143985518-7fd47679-44a6-499a-a062-5139e636b995.png)
+
+  - Limit results to 5 for now 
+  - Show account number, account type and balance ![image](https://user-images.githubusercontent.com/90637306/143985829-d367126f-1a7e-413d-bfc0-9b287f34d755.png)
+
+ - User will be able to click an account for more information (a.ka. Transaction History page) ![image](https://user-images.githubusercontent.com/90637306/143987679-865ef04e-2446-4785-92e8-2c31d8e97f56.png) - INCOMPLETE
+
+  - Show account number, account type, balance, opened/created date 
   - Show transaction history (from Transactions table)
      - For now limit results to 10 latest
 - User will be able to deposit/withdraw from their account(s)
   - Form should have a dropdown of their accounts to pick from 
     - World account should not be in the dropdown
-  - Form should have a field to enter a positive numeric value
+  - Form should have a field to enter a positive numeric value 
     - For now, allow any deposit value (0 - inf)
   - For withdraw, add a check to make sure they can’t withdraw more money than the account has
-  - Form should allow the user to record a memo for the transaction
-  - Each transaction is recorded as a transaction pair in the Transaction table per the details below
-    - These will reflect on the transaction history page (Account page’s “more info”)
-    - After each transaction pair, make sure to update the Account Balance by SUMing the BalanceChange for the AccountSrc
+  - Form should allow the user to record a memo for the transaction ![image](https://user-images.githubusercontent.com/90637306/143987771-43c661a4-e44b-47ff-9600-4ebf77fb87aa.png)
+
+  - Each transaction is recorded as a transaction pair in the Transaction table per the details below ![image](https://user-images.githubusercontent.com/90637306/143987822-1137c5da-9719-44f3-b6eb-b7ffe91bf601.png) -line 312 in transactions.php
+![image](https://user-images.githubusercontent.com/90637306/143987860-1e024255-8cf2-45d8-8581-fb1e723e6421.png) - line 273 for withdraw in transactions.php
+![image](https://user-images.githubusercontent.com/90637306/143987874-a335a732-f8fa-4dda-ae4b-6ab7de6e07f7.png) - line 239 for deposits in transactions.php, unsure how to prove this further
+
+    - These will reflect on the transaction history page (Account page’s “more info”) ![image](https://user-images.githubusercontent.com/90637306/143988012-9a40fa60-3c21-43b3-ab33-813db222c320.png)
+
+    - After each transaction pair, make sure to update the Account Balance by SUMing the BalanceChange for the AccountSrc ![image](https://user-images.githubusercontent.com/90637306/143988113-5d2984c5-9167-4137-adb6-e826b5b46bdf.png)
+ 
       - This will be done after the insert
-    - Deposits will be from the “world account”
-      - Must fetch the world account to get the id (do not hard code the id as it may change if the application migrates or gets rebuilt)
+    - Deposits will be from the “world account”  ![image](https://user-images.githubusercontent.com/90637306/143988163-59e331d0-3709-4b90-aeda-865a571b80c4.png)
+
+      - Must fetch the world account to get the id (do not hard code the id as it may change if the application migrates or gets rebuilt) ![image](https://user-images.githubusercontent.com/90637306/143988166-a4c5ec92-7a62-4267-862a-5ca6c62a3ca5.png)
+
      - Withdraws will be to the “world account”
         - Must fetch the world account to get the id (do not hard code the id as it may change if the application migrates or gets rebuilt)
      - Transaction type should show accordingly (deposit/withdraw)
