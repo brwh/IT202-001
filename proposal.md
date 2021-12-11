@@ -26,83 +26,167 @@
 **Milestone 1**
   - User will be able to register a new account
     - Form Fields
-      - Username, email, password, confirm password (other fields optional) ![image](https://user-images.githubusercontent.com/90637306/142954878-30062c1d-ae6c-4958-96f9-9cdbfdc42c23.png)
+      - Username, email, password, confirm password (other fields optional)
+        - Code: 
+        - ![image](https://user-images.githubusercontent.com/90637306/145691279-eac3408e-c3ea-4d84-8317-7de5219a2b9d.png)
+        - Live:
+        - ![image](https://user-images.githubusercontent.com/90637306/145691307-83181d15-c79b-4077-aa39-a52a9eeb561c.png)
 
-      - Email is required and must be validated - ![image](https://user-images.githubusercontent.com/90637306/142955041-e534a09d-04b1-4f0b-b4fc-f6885298ea5a.png)
-       ![image](https://user-images.githubusercontent.com/90637306/142955069-09a52d59-ad29-42a2-9fbe-37c343d086bd.png)
 
-      - Username is required ![image](https://user-images.githubusercontent.com/90637306/142955096-d80aefcd-e8c8-4189-aad3-2587fe63d6eb.png)
-        ![image](https://user-images.githubusercontent.com/90637306/142955104-80086a6a-c732-47e7-bef1-ceacf446d713.png)
 
-      - Confirm password’s match ![image](https://user-images.githubusercontent.com/90637306/142955129-44fb6878-4099-4811-8082-2ed4f919d613.png)
-      ![image](https://user-images.githubusercontent.com/90637306/142955244-87ea7895-a874-4864-93e4-c0f180d0b955.png)
+      - Email is required and must be validated
+        - Code:
+          - with **e_re** = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        - ![image](https://user-images.githubusercontent.com/90637306/145691347-76f05bea-ea93-4046-ac74-5b15954e8389.png) 
+                
+        - Live:
+        - When incorrect format:
+          - ![image](https://user-images.githubusercontent.com/90637306/145691328-8b37acf6-34f6-4503-893e-0a62d3871d7e.png)
+        - When blank submission:
+          - ![image](https://user-images.githubusercontent.com/90637306/145691421-4fdaf01f-7be0-4646-b4bd-39eabda7a390.png)
+ 
+    
+
+      - Username is required 
+        - Code:
+        - ![image](https://user-images.githubusercontent.com/90637306/145691381-fc1aaa63-8fcc-4612-95e8-d5dc4f498b92.png)
+ 
+        
+
+      - Confirm password’s match
+        - Code:
+        - With values:, validate function checks to see if the forms password value matches the forms confirm value, if they dont then show this warning
+          - ![image](https://user-images.githubusercontent.com/90637306/145691499-842b9d00-7e34-4842-8b1b-df11c718ac8f.png) 
+ 
+          - ![image](https://user-images.githubusercontent.com/90637306/145691480-af4dee40-f484-4bcf-9395-4ca5f9cf4040.png)
+  
+      
 
 
     - Users Table
-      - Id, username, email, password (60 characters), created, modified ![image](https://user-images.githubusercontent.com/90637306/142955295-6de7b48d-007b-4443-8e79-431c5efd0762.png)
+      - Id, username, email, password (60 characters), created, modified
+        -  Users Table:
+          - ![image](https://user-images.githubusercontent.com/90637306/145691518-ee2eddcc-ff36-49ca-ad83-1b7cfe5a7e4c.png)
+  
 
-     - Password must be hashed (plain text passwords will lose points) ![image](https://user-images.githubusercontent.com/90637306/142955298-907c74e3-ee53-4041-9167-80a127aecd08.png)
+      - Password must be hashed (plain text passwords will lose points)
+        - Hashed password for all but the world account (since we do not have to log in to it, if theres an issue with this i will change it):
+          -    ![image](https://user-images.githubusercontent.com/90637306/145691538-c770c8b6-f6c7-4083-abec-ff9f22df79da.png)
 
-     - Email should be unique ![image](https://user-images.githubusercontent.com/90637306/143134827-2f7a7b8f-e388-456e-b73c-e57d53fb5de9.png)
 
-     - Username should be unique ![image](https://user-images.githubusercontent.com/90637306/143134836-5282363a-75be-4fcf-b702-7424a92097ad.png)
+     - Email should be unique
+      - with same values as below
+      - this code ensures email will be unique - querys through the table of users where email = that email, if any user is grabbed with that email, tells the user the email already exists 
+        - ![image](https://user-images.githubusercontent.com/90637306/145692020-0a7df255-3cd0-4d01-8919-af200b97588f.png)
+    
 
-     - System should let user know if username or email is taken and allow the user to correct the error without wiping/clearing the form![image](https://user-images.githubusercontent.com/90637306/142955762-128f96d9-c81b-42fb-a970-6e1e1f12e4bd.png) ,   ![image](https://user-images.githubusercontent.com/90637306/142955731-a911d2f2-e3f7-479d-b2e2-fadb276fd1d9.png)
-/ ![image](https://user-images.githubusercontent.com/90637306/142955480-9fe78718-6259-4062-97a0-0deeec433614.png) , ![image](https://user-images.githubusercontent.com/90637306/142955716-4a54bea9-f297-4ff7-9986-12b8a72f541c.png)
+     - Username should be unique
+      - with these values:
+        -   ![image](https://user-images.githubusercontent.com/90637306/145691613-875b19c6-5211-47b3-90c3-77bd4313d195.png)
+
+      - this code ensures username will be unique similiar to email - querys through the table of users where user = that username, if any user is grabbed with that username, tells the user the username already exists  
+        - ![image](https://user-images.githubusercontent.com/90637306/145692022-e3b1f8ce-e605-4073-a095-e47875cb19aa.png)
+      
+        
+
+     - System should let user know if username or email is taken and allow the user to correct the error without wiping/clearing the form
+        - ![image](https://user-images.githubusercontent.com/90637306/145692048-81deaaa3-d350-4745-bcfe-5975d38309a4.png)
+
+
 
 
 
         - The only fields that may be cleared are the password fields
+          - Showing password fields are blank from same submission above:
+          - ![image](https://user-images.githubusercontent.com/90637306/145692064-74588c78-1cae-4495-a186-18279a8337e5.png)
+
 
     - User will be able to login to their account (given they enter the correct credentials)
       - Form
-        - User can login with email or username, ![image](https://user-images.githubusercontent.com/90637306/142955802-bb89e6d0-eb99-48fc-8059-02ed852fe807.png)
+        - Here is my form of login
+          - ![image](https://user-images.githubusercontent.com/90637306/145692155-48fcd1a3-8ad5-4a6d-82ef-1739cadf949f.png)
 
-        
-          - This can be done as a single field or as two separate fields
-        - Password is required ![image](https://user-images.githubusercontent.com/90637306/142955819-f4dec7e4-0257-4ce7-b30e-0e9ff2b20246.png)
-
-     - User should see friendly error messages when an account either doesn’t exist or if passwords don’t match ![image](https://user-images.githubusercontent.com/90637306/142955913-a48e1855-e443-4d2d-b7ed-ee4df27f4d10.png)
+        - User can login with email or username
+          - logging in with user
+            - https://imgur.com/a/E0acKKC - VIDEO OF LOGGING IN WITH USERNAME
+          - logging in with email
+            - https://imgur.com/a/TsMudbX - video of logging in with email
+          - This can be done as a single field or as two separate fields - *** was done as two separate fields ***
+        - Password is required 
+     - User should see friendly error messages when an account either doesn’t exist or if passwords don’t match
+      - if account doesnt exist
+        -  ![image](https://user-images.githubusercontent.com/90637306/145692953-dd1e2443-c779-4db7-8345-fa5db966cfdd.png)
+      - if incorrect password:
+        - ![image](https://user-images.githubusercontent.com/90637306/145692961-9b131373-2ea2-4f7c-a9c6-3689e96e4699.png)
+  
 
      - Logging in should fetch the user’s details (and roles) and save them into the session.
-     - User will be directed to a landing page upon login ![image](https://user-images.githubusercontent.com/90637306/142955937-2198b254-c1ff-4c50-89b1-573527d5c970.png)
-        ![image](https://user-images.githubusercontent.com/90637306/142955950-967b8f1b-86c4-4f3c-973c-b34b82064867.png)
+      - ![image](https://user-images.githubusercontent.com/90637306/145692989-c1bafaed-e6b7-45a6-afcd-6a7fefc99061.png)
+      - ![image](https://user-images.githubusercontent.com/90637306/145693002-2e142985-e163-4978-a43a-b0e6bed47e57.png)
+      - not sure how else to show it is fetching this information other than code, above shows the user being stored in session and being able to be grabbed from get_username(); 
 
-      - This is a protected page (non-logged in users shouldn’t have access) if you press back: ![image](https://user-images.githubusercontent.com/90637306/142955997-d4cfa7b8-95b6-4deb-8a7f-0837b90c6cdf.png)
+     - User will be directed to a landing page upon login
+      - ![image](https://user-images.githubusercontent.com/90637306/145693022-655a3ce0-25c2-43bc-9bfe-765d924cccfc.png)
+
+
+      - This is a protected page (non-logged in users shouldn’t have access)
+        - ![image](https://user-images.githubusercontent.com/90637306/145693062-4c002b75-bad3-4eeb-a482-0c72ba67089e.png)
+        - again unsure how to show you can check for non-logged in users other than code, if is_logged_in() is true then continue greeting the current user, otherwise notify them they are not logged in
 
       - This can be home, profile, a dashboard, etc
-   - User will be able to logout ![image](https://user-images.githubusercontent.com/90637306/142956020-f8a689c5-76fc-4c3c-b499-e3273f116902.png), ![image](https://user-images.githubusercontent.com/90637306/142956034-15ab015e-33a0-43d5-8f30-1ccf9a1fc37c.png)
+   - User will be able to logout 
+    - https://imgur.com/a/8815G3h  - recording showing logout functions
 
 
-    - Logging out will redirect to login page ![image](https://user-images.githubusercontent.com/90637306/142956037-2e79b40e-f896-4897-83f8-6e00eb96470c.png)
+    - Logging out will redirect to login page 
+      - https://imgur.com/a/8815G3h  - recording showing logout brings you to login page
 
     - User should see a message that they’ve successfully logged out
-    - Session should be destroyed (so the back button doesn’t allow them access back in) ![image](https://user-images.githubusercontent.com/90637306/142956221-149b6359-42ba-4e01-a216-a1cbd17327de.png) - session is destroyed this is a WIP however
+      - ![image](https://user-images.githubusercontent.com/90637306/145693146-7bc3696b-ee93-4a3d-b6d6-d737d15f4f93.png)
+
+    - Session should be destroyed (so the back button doesn’t allow them access back in)
+      - ![image](https://user-images.githubusercontent.com/90637306/145693154-36b9b05e-ecfa-4d21-a759-d18c492cf6a1.png)
+      
+
 
   - Basic security rules implemented
     - Authentication:
-      - Function to check if user is logged in 
-      - Function should be called on appropriate pages that only allow logged in users ![image](https://user-images.githubusercontent.com/90637306/143984383-6d0fb6f5-ad32-463d-9a79-09b45e9f6998.png)
-![image](https://user-images.githubusercontent.com/90637306/143984411-7e315ec1-89d2-4ce2-b37e-bfefa5c880d4.png)  - IF USER SOMEHOW REACHES MAIN DASHBOARD PAGE AND DO NOT HAVE A SESSION THEY WILL BE REDIRECTED TO INDEX.PHP
+      - Function to check if user is logged in
+        -  ![image](https://user-images.githubusercontent.com/90637306/145693170-15b3846b-0423-44e3-b61e-af30926cd792.png)
+
+      - Function should be called on appropriate pages that only allow logged in users
+        - ![image](https://user-images.githubusercontent.com/90637306/145693212-a2dd72a3-9821-45d1-b528-bf1a357bd88a.png)
+        - function being called on home.php 
 
     - Roles/Authorization:
       - Have a roles table (see below)
+      - roles table below
+        - ![image](https://user-images.githubusercontent.com/90637306/145693222-6cee28d7-cda4-4e06-8f93-8bd0804fb4ed.png)
+
  - Basic Roles implemented
   - Have a Roles table	(id, name, description, is_active, modified, created)
+    - ![image](https://user-images.githubusercontent.com/90637306/145693227-3ef4b3cf-bca4-491c-ba9b-6ac093a6a842.png)
+
   - Have a User Roles table (id, user_id, role_id, is_active, created, modified)
+    - ![image](https://user-images.githubusercontent.com/90637306/145693240-71a01cb4-69c5-4a9c-a924-dda845b0529e.png)
+
   - Include a function to check if a user has a specific role (we won’t use it for this milestone but it should be usable in the future)
+    - 
 - Site should have basic styles/theme applied; everything should be styled
-  - I.e., forms/input, navigation bar, etc
-- Any output messages/errors should be “user friendly” 
+  - I.e., forms/input, navigation bar, etc - i prove this in all my previous videos above
+- Any output messages/errors should be “user friendly” - i prove this in all my previous videos above
   - Any technical errors or debug output displayed will result in a loss of points
 - User will be able to see their profile
-  - Email, username, etc
-- User will be able to edit their profile
+  - Email, username, etc https://imgur.com/a/s7r8iwX - shows viewing my profile and changing my email
+- User will be able to edit their profile - https://imgur.com/a/s7r8iwX
   - Changing username/email should properly check to see if it’s available before allowing the change
-  - Any other fields should be properly validated
+  - Any other fields should be properly validated 
   - Allow password reset (only if the existing correct password is provided)
     - Hint: logic for the password check would be similar to login
-
+    - code below shows that the password will not update unless current and confirm password verify
+    - ![image](https://user-images.githubusercontent.com/90637306/145694125-3d189792-9846-4141-a6f5-85d8c19ca27c.png)
+      - 
+      
 
 
 **Milestone 2**
