@@ -1,8 +1,8 @@
 # Project Name: Simple Bank
 ## Project Summary: This project will create a bank simulation for users. They’ll be able to have various accounts, do standard bank functions like deposit, withdraw, internal (user’s accounts)/external(other user’s accounts) transfers, and creating/closing accounts.
 
-## Github Link: https://github.com/brwh/Milestone1 (Prod Branch of Project Folder) 
-## Project Board Link: https://github.com/brwh/IT202-001/projects/1   - ** HOWEVER ** CODE IS ON https://github.com/brwh/Milestone1 
+## Github Link: https://github.com/brwh/IT202-001 (Prod Branch of Project Folder) 
+## Project Board Link: https://github.com/brwh/IT202-001/projects/1    
 ## Website Link: https://bw286-prod.herokuapp.com/ (Heroku Prod of Project folder)
 ## Your Name: Brad Whitman
 
