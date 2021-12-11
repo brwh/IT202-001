@@ -33,6 +33,7 @@ require_once(__DIR__ . "/../lib/functions.php");
             <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
             <li><a href="<?php echo get_url('create_bank_account.php'); ?>">Create Bank Account</a></li>
             <li><a href="<?php echo get_url('my_accounts.php'); ?>">My Bank Accounts</a></li>
+            <li><a href="<?php echo get_url('wdt.php'); ?>">Deposit / Withdrawal / Transfer</a></li>
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
