@@ -1,32 +1,42 @@
+
+
+
 <?php
 require(__DIR__ . "/../../partials/nav.php");
+$email = se($_POST, "email", "", false);
 ?>
-<div class="container-fluid">
-    <h1>Login</h1>
-    <form onsubmit="return validate(this)" method="POST">
-        <div class="mb-3">
-            <label class="form-label" for="email">Username/Email</label>
-            <input class="form-control" type="text" id="email" name="email" required />
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="pw">Password</label>
-            <input class="form-control" type="password" id="pw" name="password" required minlength="8" />
-        </div>
-        <input type="submit" class="mt-3 btn btn-primary" value="Login" />
-    </form>
-</div>
+<html>
 <script>
-    function validate(form) {
-        //TODO 1: implement JavaScript validation
-        //ensure it returns false for an error and true for success
-
-        return true;
-    }
+    function validate() {}        
 </script>
+
+
+
+<form name = "login" onsubmit="return validate()" method="POST">
+
+    <div>
+        <label for="email">Username/Email</label>
+        <input type="text" name="email" id = "email"/>
+        
+    </div>
+    <div>
+        <label for="pw">Password</label>
+        <input type="password" id="pw" name="password" />
+    </div>
+    <input type="submit" value="Login" />
+    
+</form>
+
+
+
+
 <?php
 //TODO 2: add PHP Code
+
 if (isset($_POST["email"]) && isset($_POST["password"])) {
     $email = se($_POST, "email", "", false);
+    $username = $email;
+    
     $password = se($_POST, "password", "", false);
 
     //TODO 3
@@ -50,7 +60,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         }
     }
     if (empty($password)) {
-        flash("password must not be empty", "danger");
+        flash("Password must not be empty", "danger");
         $hasError = true;
     }
     if (strlen($password) < 8) {
@@ -60,9 +70,9 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     if (!$hasError) {
         //TODO 4
         $db = getDB();
-        $stmt = $db->prepare("SELECT id, email, username, password from Users where email = :email or username = :email");
+        $stmt = $db->prepare("SELECT * from Users where email = '$email' or username = '$email'");
         try {
-            $r = $stmt->execute([":email" => $email]);
+            $r = $stmt->execute();
             if ($r) {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($user) {
@@ -83,8 +93,6 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         } else {
                             $_SESSION["user"]["roles"] = []; //no roles
                         }
-                        //M2-Feat-Accounts
-                        get_or_create_account();
                         die(header("Location: home.php"));
                     } else {
                         flash("Invalid password", "danger");
@@ -96,9 +104,49 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         } catch (Exception $e) {
             flash("<pre>" . var_export($e, true) . "</pre>");
         }
+
     }
 }
 ?>
 <?php
-require(__DIR__ . "/../../partials/footer.php");
+require(__DIR__ . "/../../partials/flash.php");
+?>
+
+<?php
+/*
+<?php 
+session_start();
+include 'xfetchinfo.php';
+
+include 'login_check.php';
+include './lib/db.php';
+if(!check_login()) {
+    header('Location: ./index.php');
+}
+?>
+
+<html>
+<style>
+    body {
+        background-color: beige;
+        font: 20px Verdana, Sans-Serif;
+    }
+    h1{
+        font: 30px Verdana, Sans-Serif;
+    }
+</style>
+
+
+<h1> <?php echo 'Welcome to your Dashboard ' . $username . ' ' . $user_id .  ' !'; ?> <br><br> </h1>
+<?php include 'xferinfo.php'; ?>
+<nav>
+    <a href="logout.php">Logout</a> <br></html> <br>
+    <a href="account_edit.php">Edit account information</a> <br>
+    <a href="create_bank_account.php"> Create Bank Account</a> <br>
+    <a href="myAccounts.php"> View My Bank Accounts</a> <br>
+    <a href="transactions.php"> Deposit / Withdrawal / Transfer</a> <br>
+    <a href="t_history.php"> Transaction History</a> <br>
+</nav>   
+<html>
+*/
 ?>

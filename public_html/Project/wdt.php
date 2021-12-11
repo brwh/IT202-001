@@ -36,20 +36,16 @@ alert("hidden2= "+formObj.hidden2.value);
 </script>
 </script>
 <?php
-session_start();
-include 'xfetchinfo.php';
-include 'db.php';
-include 'login_check.php';
-include 'fetchWorld.php';
-if(!check_login()) {
+require(__DIR__ . "/../../partials/nav.php");
+
+if(!is_logged_in()) {
     header('Location: ./logout.php');
 }
-echo print_r($_SESSION);
-echo 'this is my user id currently' . $_SESSION['user_id'];
-$user_id = $_SESSION['user_id'];
+
+$user_id = get_user_id();
 echo $user_id;
-$world_balance = $_SESSION['world_balance'];
-$world_type = $_SESSION['world_type'];
+
+$world_type = 'world';
 $pdo = getDB();
 function randomNumber($length) {
     $result = '';
@@ -65,7 +61,7 @@ function randomNumber($length) {
 
 
 <body>  
-<form action="./transactions.php" class="form" method="POST">
+<form action="./wdt.php" class="form" method="POST">
 
 <select name = 'method-select' onchange="yesnoCheck(this)">
     <option value="" disabled selected hidden>Please select from the options below (Deposit / Withdraw / Transfer)</option>
@@ -196,8 +192,7 @@ while ($row = $display->fetch()){
 
 
 
-<a href="login.php">Go Back to Main Dashboard</a> <br>
-<a href="logout.php">Logout</a> <br>
+
 
 
 <?php 
@@ -208,6 +203,14 @@ if(isset($_POST['submit'])){
     $method = $_POST['method-select'];
     $memo = $_POST['memo'];
     
+    $findw = $pdo->prepare("SELECT * FROM Accounts WHERE account_type = 'world' ");
+    
+    $findw->execute();
+        
+    while ($row = $findw->fetch(PDO::FETCH_ASSOC)){
+        $world_balance = $row['balance'];
+        $world_id = $row['user_id'];
+        }   
     
 
     if ($method == 'deposit') {
@@ -270,10 +273,10 @@ if(isset($_POST['submit'])){
         $update_account->execute();
         
 
-        $Wtransaction_history =  $statement = $pdo->prepare("INSERT INTO `Transactions` (AccountSrc, AccountDest, BalanceChange, TransactionType, Memo) VALUES ('$world_id', '$user_id', '+$deposit_amount', '$method', '$memo') ");
+        $Wtransaction_history =  $statement = $pdo->prepare("INSERT INTO `Transactions` (AccountSrc, AccountDest, BalanceChange, TransactionType, Memo) VALUES ('$world_id', '$user_id', '+$$withdraw_amount', '$method', '$memo') ");
         $Wtransaction_history->execute();
 
-        $transaction_history = $statement = $pdo->prepare("INSERT INTO `Transactions` (AccountSrc, AccountDest, BalanceChange, TransactionType, Memo) VALUES ('$user_id','$world_id', '-$deposit_amount', '$method', '$memo') ");
+        $transaction_history = $statement = $pdo->prepare("INSERT INTO `Transactions` (AccountSrc, AccountDest, BalanceChange, TransactionType, Memo) VALUES ('$user_id','$world_id', '-$$withdraw_amount', '$method', '$memo') ");
         $transaction_history->execute();
     }
 
@@ -317,4 +320,3 @@ if(isset($_POST['submit'])){
         
     }
 }
-
