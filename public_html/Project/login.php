@@ -7,6 +7,7 @@ $email = se($_POST, "email", "", false);
 ?>
 <html>
 <script>
+
     function validate(form) {
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
@@ -49,6 +50,7 @@ $email = se($_POST, "email", "", false);
         }
 
     }        
+
 </script>
 
 
@@ -139,7 +141,9 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         flash("Invalid password", "danger");
                     }
                 } else {
+
                     flash("Email / Username not found", "danger");
+
                 }
             }
         } catch (Exception $e) {
@@ -152,4 +156,6 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 <?php
 require(__DIR__ . "/../../partials/flash.php");
 ?>
+
+
 

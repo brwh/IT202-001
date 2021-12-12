@@ -1,3 +1,4 @@
+
 <html>
 
 <script>
@@ -127,3 +128,4 @@ function randomNumber($length)
 
             require(__DIR__ . "/../../partials/flash.php");
         }
+

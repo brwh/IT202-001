@@ -3,16 +3,21 @@ require(__DIR__ . "/../../partials/nav.php");
 reset_session();
 $email = se($_POST, "email", "", false);
 $username = se($_POST, "username", "", false);
+
 ?>
 <form name = 'register' onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
+
         <input type="text" name="email" value = "<?php if (isset($email)) echo $email; ?>" >
+
        
     </div>
     <div>
         <label for="username">Username</label>
+
         <input type="text" name="username" value = "<?php if (isset($username)) echo $username; ?>" /> 
+
     </div>
     <div>
         <label for="pw">Password</label>
@@ -146,8 +151,10 @@ if($uResult) {
   flash("Username already in use, please type in a different username", "danger");
   $hasError = True;
 }
+
 if ($eResult) {
     flash("Email already in use, please type in a different email", "danger");
+
   $hasError = True;
 }
     if (!$hasError) {
