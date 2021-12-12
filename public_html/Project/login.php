@@ -7,7 +7,50 @@ $email = se($_POST, "email", "", false);
 ?>
 <html>
 <script>
-    function validate() {}        
+
+    function validate(form) {
+        //TODO 1: implement JavaScript validation
+        //ensure it returns false for an error and true for success
+        var email = form.email;
+        var user = form.username;
+        var password = form.password;
+        var u_re = /^[a-z0-9_-]{3,16}$/;
+        var e_re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var flag = false;
+        console.log(email.value);
+        console.log(user.value)
+        if(email.value == ""){
+            flash("Email / User must not be empty", "danger");
+            email.focus();
+            flag = true;
+        }
+        
+        if(password.value == ""){
+            flash("Please enter in a password, do not leave empty", "danger");
+            email.focus();
+            flag = true;
+        }
+
+        if(!u_re.test(user.value)){
+            flash("Username must only be alphanumeric and can only contain - or _", "danger");
+            email.focus();
+            flag = true;
+            }
+        if (!e_re.test(email.value)){
+                flag = true;
+                flash("Invalid email address", "danger");
+        }
+
+
+        if(flag){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }        
+
 </script>
 
 
@@ -98,7 +141,9 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                         flash("Invalid password", "danger");
                     }
                 } else {
-                    flash("Email not found", "danger");
+
+                    flash("Email / Username not found", "danger");
+
                 }
             }
         } catch (Exception $e) {
@@ -112,41 +157,5 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 require(__DIR__ . "/../../partials/flash.php");
 ?>
 
-<?php
-/*
-<?php 
-session_start();
-include 'xfetchinfo.php';
-
-include 'login_check.php';
-include './lib/db.php';
-if(!check_login()) {
-    header('Location: ./index.php');
-}
-?>
-
-<html>
-<style>
-    body {
-        background-color: beige;
-        font: 20px Verdana, Sans-Serif;
-    }
-    h1{
-        font: 30px Verdana, Sans-Serif;
-    }
-</style>
 
 
-<h1> <?php echo 'Welcome to your Dashboard ' . $username . ' ' . $user_id .  ' !'; ?> <br><br> </h1>
-<?php include 'xferinfo.php'; ?>
-<nav>
-    <a href="logout.php">Logout</a> <br></html> <br>
-    <a href="account_edit.php">Edit account information</a> <br>
-    <a href="create_bank_account.php"> Create Bank Account</a> <br>
-    <a href="myAccounts.php"> View My Bank Accounts</a> <br>
-    <a href="transactions.php"> Deposit / Withdrawal / Transfer</a> <br>
-    <a href="t_history.php"> Transaction History</a> <br>
-</nav>   
-<html>
-*/
-?>

@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS `Accounts`
 (
     `id` int auto_increment not null,

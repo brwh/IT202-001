@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS `Transactions`
 (
     `AccountSrc` INT(100),
@@ -6,5 +7,6 @@ CREATE TABLE IF NOT EXISTS `Transactions`
     `Transaction Type` VARCHAR(200),
     `Memo` VARCHAR(200),
     `Created` timestamp default current_timestamp,
+
 
 )
