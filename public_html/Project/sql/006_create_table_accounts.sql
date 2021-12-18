@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS `Accounts`
 (
     `id` int auto_increment not null,
@@ -10,4 +11,5 @@ CREATE TABLE IF NOT EXISTS `Accounts`
     PRIMARY KEY (`id`),
     FOREIGN KEY (`user_id`) REFERENCES Users(`id`),
     UNIQUE KEY (`user_id`, `account_number`)
+
 )
