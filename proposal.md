@@ -189,7 +189,7 @@
  
  - User will be able to transfer between their accounts
     - Form should include a dropdown first AccountSrc and a dropdown for AccountDest (only accounts the user owns; no world account)
-      - ![image](https://user-images.githubusercontent.com/90637306/146628152-ddfe285d-72b1-4511-853b-53892a2976c4.png)
+      - ![image](https://user-images.githubusercontent.com/90637306/146628152-ddfe285d-72b1-4511-853b-53892a2976c4.png) 
 
   
     - Form should include a field for a positive numeric value
@@ -197,7 +197,8 @@
 
    
     - System shouldn’t allow the user to transfer more funds than what’s available in AccountSrc
-      - ![image](https://user-images.githubusercontent.com/90637306/146628184-aac3b7d1-615f-4a52-91b0-c0dbb74b1025.png) 
+      - ![image](https://user-images.githubusercontent.com/90637306/146628184-aac3b7d1-615f-4a52-91b0-c0dbb74b1025.png)  FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY - USING ALERT CURRENTLY
+
 
 
     - Form should allow the user to record a memo for the transaction
@@ -237,7 +238,7 @@
       - ![image](https://user-images.githubusercontent.com/90637306/146628116-2a21581e-bd75-4a00-8adf-f29af47c7912.png)
 
     - System shouldn’t let the user transfer more than the balance of their account
-      - ![image](https://user-images.githubusercontent.com/90637306/146628127-ca4360fd-f6ee-4c8e-9efc-856a6728370e.png) - FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY
+      - ![image](https://user-images.githubusercontent.com/90637306/146628127-ca4360fd-f6ee-4c8e-9efc-856a6728370e.png) - FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY - USING ALERT CURRENTLY
 
 
 
