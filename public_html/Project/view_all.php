@@ -1,18 +1,16 @@
 <?php 
 require(__DIR__ . "/../../partials/nav.php");
 ?>
-
 <html>
+
 <style>
 table, th, td {
   border:1px solid black
 
 }
-
-
 </style>
-
-<h1> Accounts: </h1>
+<input type ="submit" id = "sort-type" name = "sort-type" value="Sort By Transaction Type">
+<h1> Account's History: </h1>
 
 <table id = "acctsTable">
     <thead>
@@ -26,7 +24,10 @@ table, th, td {
         </tr>
     </thead>
     <tbody id = "table_data">
-<?php
+
+
+<?php 
+
 $user_id = get_user_id();
 $acct_id = $_GET['acct_num'];
 echo $acct_id;
@@ -42,7 +43,7 @@ $display->setFetchMode(PDO::FETCH_ASSOC);
 
 $count=0;
 while ($row = $display->fetch())
-{   if($count < 10){
+{ 
     
     
     
@@ -50,7 +51,7 @@ while ($row = $display->fetch())
 
     echo '
      <tr>
-      <td>'.$row["AccountSrc"] . '</td>
+      <td>'.$row["AccountSrc"]  .' </td>
       <td>'.$row["AccountDest"].' </td>
       <td>'.$row["BalanceChange"].' </td>
       <td>'.$row["TransactionType"].' </td>
@@ -58,24 +59,18 @@ while ($row = $display->fetch())
       <td>'.$row["Created"].' </td>
      </tr>
      ';
-     $count +=1;
-    }
+
 }
-echo '<a href= "./view_all.php?acct_num=' . $acct_id . '"> Click here </a>';
-
 ?>
-
 </tbody>
-
-   </table>
-   </body>
-
+</table>
 <?php
-if(isset($_post['sort-type'])){
-    $sort = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = '$acct_id' ORDER BY Transactions.TransactionType " );
+if(isset($_POST["sort-type"])){
+    echo "HELLO";
+    $sort = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = '$acct_id' " );
     $sort->execute();
-    while ($row = $display->fetch())
-{   if($count < 10){
+    while ($row = $sort->fetch())
+{   
     
     
     
@@ -94,11 +89,7 @@ if(isset($_post['sort-type'])){
      
     }
 }
-}
+
 ?>   
 
-  
- 
 </html>
-
-

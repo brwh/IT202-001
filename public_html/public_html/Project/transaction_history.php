@@ -1,20 +1,13 @@
-<?php 
-require(__DIR__ . "/../../partials/nav.php");
-?>
-
 <html>
 <style>
 table, th, td {
   border:1px solid black
 
 }
-
-
 </style>
-
 <h1> Accounts: </h1>
 
-<table id = "acctsTable">
+<table>
     <thead>
         <tr>
         <th> Account Source </th>
@@ -26,7 +19,8 @@ table, th, td {
         </tr>
     </thead>
     <tbody id = "table_data">
-<?php
+<?php 
+require(__DIR__ . "/../../partials/nav.php");
 $user_id = get_user_id();
 $acct_id = $_GET['acct_num'];
 echo $acct_id;
@@ -50,7 +44,7 @@ while ($row = $display->fetch())
 
     echo '
      <tr>
-      <td>'.$row["AccountSrc"] . '</td>
+      <td>'.$row["AccountSrc"]  . ' - '  . $row["account_number"] . ' </td>
       <td>'.$row["AccountDest"].' </td>
       <td>'.$row["BalanceChange"].' </td>
       <td>'.$row["TransactionType"].' </td>
@@ -62,43 +56,12 @@ while ($row = $display->fetch())
     }
 }
 echo '<a href= "./view_all.php?acct_num=' . $acct_id . '"> Click here </a>';
-
 ?>
 
 </tbody>
-
    </table>
-   </body>
-
-<?php
-if(isset($_post['sort-type'])){
-    $sort = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = '$acct_id' ORDER BY Transactions.TransactionType " );
-    $sort->execute();
-    while ($row = $display->fetch())
-{   if($count < 10){
-    
-    
-    
-
-
-    echo '
-     <tr>
-      <td>'.$row["AccountSrc"] . '</td>
-      <td>'.$row["AccountDest"].' </td>
-      <td>'.$row["BalanceChange"].' </td>
-      <td>'.$row["TransactionType"].' </td>
-      <td>'.$row["Memo"].' </td>
-      <td>'.$row["Created"].' </td>
-     </tr>
-     ';
-     
-    }
-}
-}
-?>   
-
-  
- 
+  </div>
+ </body>
 </html>
 
 
