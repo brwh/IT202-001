@@ -1,3 +1,4 @@
+
 # Project Name: Simple Bank
 ## Project Summary: This project will create a bank simulation for users. They’ll be able to have various accounts, do standard bank functions like deposit, withdraw, internal (user’s accounts)/external(other user’s accounts) transfers, and creating/closing accounts.
 
@@ -188,25 +189,56 @@
  
  - User will be able to transfer between their accounts
     - Form should include a dropdown first AccountSrc and a dropdown for AccountDest (only accounts the user owns; no world account)
+      - ![image](https://user-images.githubusercontent.com/90637306/146628152-ddfe285d-72b1-4511-853b-53892a2976c4.png)
+
+  
     - Form should include a field for a positive numeric value
+      - ![image](https://user-images.githubusercontent.com/90637306/146628160-5a890996-c468-4c11-9f5e-e00c3153d4f3.png)
+
+   
     - System shouldn’t allow the user to transfer more funds than what’s available in AccountSrc
+      - ![image](https://user-images.githubusercontent.com/90637306/146628184-aac3b7d1-615f-4a52-91b0-c0dbb74b1025.png) 
+
+
     - Form should allow the user to record a memo for the transaction
+      - ![image](https://user-images.githubusercontent.com/90637306/146628227-235e1796-ab75-4407-a394-fa8facc1e8cc.png)
+
+
     - Each transaction is recorded as a transaction pair in the Transaction table
-      - These will reflect in the transaction history page   
+      - These will reflect in the transaction history page
+      - ![image](https://user-images.githubusercontent.com/90637306/146628045-78a535f3-0eed-4704-bd11-7d07e291e135.png)
+
+        
+        
  - Transaction History page
     - Will show the latest 10 transactions by default
-    - User will be able to filter transactions between two dates
-    - User will be able to filter transactions by type (deposit, withdraw, transfer)
+      - ![image](https://user-images.githubusercontent.com/90637306/146628001-2817c29d-de47-413a-ada0-2e9f6f90957a.png)
+
+    - User will be able to filter transactions between two dates - STRUGGLING TO DO THIS WITH MY CURRENT JOIN QUERY
+    - User will be able to filter transactions by type (deposit, withdraw, transfer) - STRUGGLING TO DO THIS WITH MY CURRENT JOIN QUERY
     - Transactions should paginate results after the initial 10
 
 - User’s profile page should record/show First and Last name
-- User will be able to transfer funds to another user’s account
+- User will be able to transfer funds to another user’s account 
+ -  ![image](https://user-images.githubusercontent.com/90637306/146628073-4d965455-350e-4c10-bb03-fdbc27860595.png)
+
     - Form should include a dropdown of the current user’s accounts (as AccountSrc)
+       - ![image](https://user-images.githubusercontent.com/90637306/146627869-cccb5707-386d-46ee-8b6b-76ccbc6c6dc5.png)
     - Form should include a field for the destination user’s last name
+      - ![image](https://user-images.githubusercontent.com/90637306/146628082-862f488f-0034-4edc-b605-373a6e5b3c0b.png) - CURRENLTY DID THE LAST 4 OF THEIR BANK ACCOUNT #
+ 
     - Form should include a field for the last 4 digits of the destination user’s account number (to lookup AccountDest)
+      - ![image](https://user-images.githubusercontent.com/90637306/146628100-79e12632-66d1-4134-b761-7155a49d04bc.png)
+
     - Form should include a field for a positive numerical value
+       - ![image](https://user-images.githubusercontent.com/90637306/146628109-f5ffc171-1826-4a59-b204-bea60c3d9684.png)
+
     - Form should allow the user to record a memo for the transaction
+      - ![image](https://user-images.githubusercontent.com/90637306/146628116-2a21581e-bd75-4a00-8adf-f29af47c7912.png)
+
     - System shouldn’t let the user transfer more than the balance of their account
+      - ![image](https://user-images.githubusercontent.com/90637306/146628127-ca4360fd-f6ee-4c8e-9efc-856a6728370e.png) - FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY
+
 
 
 

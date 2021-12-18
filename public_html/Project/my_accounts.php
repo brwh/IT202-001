@@ -1,4 +1,5 @@
 
+
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 $user_id = get_user_id();
@@ -54,5 +55,6 @@ while ($row = $display->fetch())
 </html>
 
  
+
 
 
