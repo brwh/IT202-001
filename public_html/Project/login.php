@@ -53,7 +53,7 @@ $email = se($_POST, "email", "", false);
 
 
 
-<form name = "login" onsubmit="return validate()" method="POST">
+<form name = "login" onsubmit="return validate(this)" method="POST">
 
     <div>
         <label for="email">Username/Email</label>
@@ -109,6 +109,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         $hasError = true;
     }
     if (!$hasError) {
+        $noLogin = false;
         //TODO 4
         $db = getDB();
         $stmt = $db->prepare("SELECT * from Users where email = '$email' or username = '$email'");
@@ -117,6 +118,12 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
             if ($r) {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($user) {
+                    if($user['disabled'] == 1){
+                        $noLogin = true;
+                        flash("Sorry your account is no longer active", "danger");
+                        
+                    }
+                    if(!$noLogin){
                     $hash = $user["password"];
                     unset($user["password"]);
                     if (password_verify($password, $hash)) {
@@ -138,10 +145,18 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                     } else {
                         flash("Invalid password", "danger");
                     }
-                } else {
+                }
+                
+                
+                } 
+                
+                
+                else {
                     flash("Email / Username not found", "danger");
                 }
+           
             }
+
         } catch (Exception $e) {
             flash("<pre>" . var_export($e, true) . "</pre>");
         }
