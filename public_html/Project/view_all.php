@@ -1,3 +1,4 @@
+
 <?php 
 require(__DIR__ . "/../../partials/nav.php");
 ?>
@@ -92,4 +93,3 @@ if(isset($_POST["sort-type"])){
 
 ?>   
 
-</html>

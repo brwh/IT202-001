@@ -1,3 +1,4 @@
+
 # Project Name: Simple Bank
 ## Project Summary: This project will create a bank simulation for users. They’ll be able to have various accounts, do standard bank functions like deposit, withdraw, internal (user’s accounts)/external(other user’s accounts) transfers, and creating/closing accounts.
 
@@ -188,8 +189,19 @@
  
  - User will be able to transfer between their accounts
     - Form should include a dropdown first AccountSrc and a dropdown for AccountDest (only accounts the user owns; no world account)
+
+      - ![image](https://user-images.githubusercontent.com/90637306/146628152-ddfe285d-72b1-4511-853b-53892a2976c4.png) 
+
+  
+
     - Form should include a field for a positive numeric value
     - System shouldn’t allow the user to transfer more funds than what’s available in AccountSrc
+
+      - ![image](https://user-images.githubusercontent.com/90637306/146628184-aac3b7d1-615f-4a52-91b0-c0dbb74b1025.png)  FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY - USING ALERT CURRENTLY
+
+
+
+
     - Form should allow the user to record a memo for the transaction
     - Each transaction is recorded as a transaction pair in the Transaction table
       - These will reflect in the transaction history page   
@@ -208,6 +220,10 @@
     - Form should allow the user to record a memo for the transaction
     - System shouldn’t let the user transfer more than the balance of their account
 
+      - ![image](https://user-images.githubusercontent.com/90637306/146628127-ca4360fd-f6ee-4c8e-9efc-856a6728370e.png) - FLASH NOT WORKING, BUT WILL NOT ALLOW USER TO SUBMIT QUERY - USING ALERT CURRENTLY
+
+
+
 
 
  
@@ -215,47 +231,96 @@
 
 **Milestone 4**
 - User can set their profile to be public or private (will need another column in Users table)
+  - ![image](https://user-images.githubusercontent.com/90637306/147024684-e9a9d9f3-1562-46d5-80b3-5f3e90b2cd40.png)
+
   - If public, hide email address from other users
 - User will be able open a savings account
   - System will generate a 12 digit/character account number per the existing rules (see Checking Account above)
   - System will associate the account to the user
   - Account type will be set as savings
+    - all conditions are answered in this picture: 
+      - ![image](https://user-images.githubusercontent.com/90637306/147016854-f2d5d431-6393-4f0e-84fe-4debbdb834b0.png)
+
   - Will require a minimum deposit of $5 (from the world account)
     - Entry will be recorded in the Transaction table in a transaction pair (per notes below)
+      - ![image](https://user-images.githubusercontent.com/90637306/147017327-9a949555-6166-4220-a37d-724ecc35b45a.png)
+      - ![image](https://user-images.githubusercontent.com/90637306/147017362-55c82d23-0578-4073-8d7f-6894f3b452ee.png)
+
     - Account Balance will be updated based on SUM of BalanceChange of AccountSrc
+      - ![image](https://user-images.githubusercontent.com/90637306/147017696-ca4ed329-c152-410f-90df-553142dbbe37.png)
+      
   - System sets an APY that’ll be used to calculate monthly interest based on the balance of the account
+    - ![image](https://user-images.githubusercontent.com/90637306/147024165-d37412cc-6471-47d1-a794-be2a288fec36.png)
+
     - Recommended to create a table for “system properties” and have this value stored there and fetched when needed, this will allow you to have an admin account change the value in the future)
   - User will see user-friendly error messages when appropriate
   - User will see user-friendly success message when account is created successfully
     - Redirect user to their Accounts page
 - User will be able to take out a loan
+  - ![image](https://user-images.githubusercontent.com/90637306/147024943-69b17eaa-a038-4e96-9208-e4e4f2b130b7.png)
+
   - System will generate a 12 digit/character account number per the existing rules (see Checking Account above)
   - Account type will be set as loan
   - Will require a minimum value of $500
+    - ![image](https://user-images.githubusercontent.com/90637306/147024976-a84654b9-777d-4673-b908-5e171f113bc8.png)
+
   - System will show an APY (before the user submits the form)
     -  This will be used to add interest to the loan account
+      - ![image](https://user-images.githubusercontent.com/90637306/147022016-80e5e7a6-ac2c-4bf1-9f23-2f5be66bf24d.png)
+ 
     - Recommended to create a table for “system properties” and have this value stored there and fetched when needed, this will allow you to have an admin account change the value in the future)
   - Form will have a dropdown of the user’s accounts of which to deposit the money into
+    - I made loan accounts its own thing, and had the user pay it off in a special page
+      - 
   - **Special Case for Loans**:
     -  Loans will show with a positive balance of what’s required to pay off (although it is a negative since the user owes it)
+      -  ![image](https://user-images.githubusercontent.com/90637306/147025851-155bf8d3-6fe1-4a2b-a3a2-897d2938cb57.png)
+
     - User will transfer funds to the loan account to pay it off
+      - ![image](https://user-images.githubusercontent.com/90637306/147025861-9120100f-d4ed-464f-a600-3f490c92b493.png)
+      - ![image](https://user-images.githubusercontent.com/90637306/147026064-93424b35-ebad-47af-aed9-945d57ef2634.png)
+
     - Transfers will continue to be recorded in the Transactions table
+      - ![image](https://user-images.githubusercontent.com/90637306/147026125-4a86ac94-58a4-4ab1-91f3-ba492ffb7208.png)
+
     - Loan account’s balance will be the balance minus any transfers to this account
+      -  ![image](https://user-images.githubusercontent.com/90637306/147026236-27d1f5f8-fdfd-4f66-aad5-aa4ccc0ca5ba.png)
+      - loan balance is the current balance of that loan account
     - Interest will be applied to the current loan balance and add to it (causing the user to owe more)
+      - ![image](https://user-images.githubusercontent.com/90637306/147026323-5b55ff93-0c5e-4291-93e1-83e256754f89.png)
+
     - A loan with 0 balance will be considered paid off and will not accrue interest and will be eligible to be marked as closed
+      - ![image](https://user-images.githubusercontent.com/90637306/147026367-10924b6e-ea62-4fcc-9d06-d4bafecf1a43.png)
+
     - User can’t transfer more money from a loan once it’s been opened and a loan account should not appear in the Account Source dropdowns
+      - ![image](https://user-images.githubusercontent.com/90637306/147026435-0de614e5-3608-4d63-b6b3-e30097bf5fd2.png)
+
   - User will see user-friendly error messages when appropriate
+    - ![image](https://user-images.githubusercontent.com/90637306/147024805-b61ce2bb-c6bf-42a7-bd90-fd827310e999.png)
+
   - User will see user-friendly success message when account is created successfully
+    - ![image](https://user-images.githubusercontent.com/90637306/147025101-3acbbe7d-8b1a-479b-a85a-ce25e3af609c.png)
+
     - Redirect user to their Accounts page
- 
+  
 - Listing accounts and/or viewing Account Details should show any applicable APY
+  - ![image](https://user-images.githubusercontent.com/90637306/147026532-bb2a81ba-c809-4d8c-87ea-fe42e183d0e5.png)
+ 
 - User will be able to close an account
+  - ![image](https://user-images.githubusercontent.com/90637306/147026556-a41f724f-1cb4-4132-9fba-9675ed48b609.png)
+ 
   - User must transfer or withdraw all funds out of the account before doing so
+    - ![image](https://user-images.githubusercontent.com/90637306/147026683-413080fc-07ea-4e3e-90e2-081994606ea5.png)
+
   - Account should have a column “active” that will get set as false.
     - All queries for Accounts should be updated to pull only “active” = true accounts (i.e., dropdowns, My Accounts, etc)
     - Do not delete the record, this is a soft delete so it doesn’t break transactions
   - Closed accounts don’t show up anymore
+  - ![image](https://user-images.githubusercontent.com/90637306/147029548-7e5051f0-bd7e-4f0c-96e0-addfc4bf860e.png)
+   - ![image](https://user-images.githubusercontent.com/90637306/147029618-6898d389-11b3-40da-8ed4-6b1f471411f9.png) - I CLOSED A CHECKINGS ACCOUNT AND IT IS NO LONGER THERE
+
   - If the account is a loan, it must be paid off in full first
+    - - ![image](https://user-images.githubusercontent.com/90637306/147026683-413080fc-07ea-4e3e-90e2-081994606ea5.png)
   
 - Admin role (leave this section for last)
   - Will be able to search for users by firstname and/or lastname
@@ -265,11 +330,19 @@
     - Frozen accounts still show in results, but they can’t be interacted with.
     - [Dev note]: Will want to add a column to Accounts table called frozen and default it to false
       - Update transactions logic to not allow frozen accounts to be used for a transaction
+        - ![image](https://user-images.githubusercontent.com/90637306/147029899-51eeebac-afef-429f-9c76-633b4da6f639.png)
+
   - Will be able to open accounts for specific users
   - Will be able to deactivate a user
     - Requires a new column on the Users table (i.e., is_active)
+      - ![image](https://user-images.githubusercontent.com/90637306/147030402-44db5ea7-7717-4921-b025-0092915bf495.png)
+
     - Deactivated users will be restricted from logging in
+      - ![image](https://user-images.githubusercontent.com/90637306/147029981-bec5c16c-d803-437e-bb95-b767d466c327.png)
+      - 
       - “Sorry your account is no longer active” 
+      - ![image](https://user-images.githubusercontent.com/90637306/147030382-8c892f72-8b77-4d2d-b946-15fd411aae75.png)
+
  
 
  
