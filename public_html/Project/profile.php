@@ -134,7 +134,7 @@ $username = get_username();
         let con = form.confirmPassword.value;
         let isValid = true;
         let private = form.private;
-        var priv_pattern = /[0-1]/
+        var priv_pattern = /[0-1]?/
         if(!priv_pattern.test(private.value)){
             flash("Please enter numerical values [0 or 1] only", "danger");
             private.focus();
