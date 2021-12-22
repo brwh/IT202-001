@@ -5,7 +5,7 @@
 ## Github Link: https://github.com/brwh/IT202-001 (Prod Branch of Project Folder) 
 ## Project Board Link: https://github.com/brwh/IT202-001/projects/1    
 ## Website Link: https://bw286-prod.herokuapp.com/ (Heroku Prod of Project folder)
-## Your Name: Brad Whitman
+## Your Name: Brad Whitman - Video Presentation Link: https://youtu.be/TmHdCwD20LE
 
 <!--
 ### Line item / Feature template (use this for each bullet point)
