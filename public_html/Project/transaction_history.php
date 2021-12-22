@@ -32,17 +32,22 @@ $acct_id = $_GET['acct_num'];
 echo $acct_id;
 
 $pdo = getDB();
-
-
-$display = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = '$acct_id' " );
-$display->execute();
+$display = $pdo->prepare('
+SELECT Transactions.AccountSrc, Transactions.AccountDest, Transactions.BalanceChange, Transactions.TransactionType, Transactions.Memo, Transactions.Created
+FROM Transactions
+INNER JOIN Accounts
+ON Transactions.AccountSrc = Accounts.user_id
+WHERE Accounts.account_number = :aid
+');
+//$display = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = :aid LIMIT 10" );
+$display->execute([":aid"=>$acct_id]);
 
 $display->setFetchMode(PDO::FETCH_ASSOC);
 
 
-$count=0;
+
 while ($row = $display->fetch())
-{   if($count < 10){
+{   
     
     
     
@@ -58,10 +63,10 @@ while ($row = $display->fetch())
       <td>'.$row["Created"].' </td>
      </tr>
      ';
-     $count +=1;
+    
     }
-}
-echo '<a href= "./view_all.php?acct_num=' . $acct_id . '"> Click here </a>';
+
+echo '<a href= "./view_all.php?acct_num=' . $acct_id . '"> Click here to view more transactions </a>';
 
 ?>
 
@@ -71,7 +76,7 @@ echo '<a href= "./view_all.php?acct_num=' . $acct_id . '"> Click here </a>';
    </body>
 
 <?php
-if(isset($_post['sort-type'])){
+if(isset($_POST['sort-type'])){
     $sort = $pdo->prepare("SELECT * FROM Transactions INNER JOIN Accounts ON Transactions.AccountSrc = Accounts.user_id WHERE Accounts.account_number = '$acct_id' ORDER BY Transactions.TransactionType " );
     $sort->execute();
     while ($row = $display->fetch())

@@ -1,12 +1,21 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
 is_logged_in(true);
+$db = getDB();
 ?>
 <?php
 if (isset($_POST["save"])) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
     $hasError = false;
+    $priv = $_POST["private"];
+
+    if($priv == 1 or $priv == 0){
+        $stmt = $db->prepare("UPDATE Users set private = :priv where id = :id");
+        $stmt->execute([':priv'=> $private, ':id' => get_user_id()]);
+        flash("Account privacy changed successfully");
+    }
+
     //sanitize
     $email = sanitize_email($email);
     //validate
@@ -108,7 +117,15 @@ $username = get_username();
         <label for="conp">Confirm Password</label>
         <input type="password" name="confirmPassword" id="conp" />
     </div>
+    <div class="mb-3">
+    <label for="priv">Type in 1 if you would like to go private, Type in 0 if you would like to revert from having your account private</label>
+    <input type="private" name="private" id="private" pattern = "[01]?">
+
+    </div>
+
     <input type="submit" value="Update Profile" name="save" />
+
+
 </form>
 
 <script>
@@ -116,140 +133,24 @@ $username = get_username();
         let pw = form.newPassword.value;
         let con = form.confirmPassword.value;
         let isValid = true;
-        //TODO add other client side validation....
+        let private = form.private;
+        var priv_pattern = /[0-1]/
+        if(!priv_pattern.test(private.value)){
+            flash("Please enter numerical values [0 or 1] only", "danger");
+            private.focus();
+            flag = true;
+            }
+        
+        if (!flag){
+            return true;
 
-        //example of using flash via javascript
-        //find the flash container, create a new element, appendChild
-        if (pw !== con) {
-            //find the container
-            /*let flash = document.getElementById("flash");
-            //create a div (or whatever wrapper we want)
-            let outerDiv = document.createElement("div");
-            outerDiv.className = "row justify-content-center";
-            let innerDiv = document.createElement("div");
-            //apply the CSS (these are bootstrap classes which we'll learn later)
-            innerDiv.className = "alert alert-warning";
-            //set the content
-            innerDiv.innerText = "Password and Confirm password must match";
-            outerDiv.appendChild(innerDiv);
-            //add the element to the DOM (if we don't it merely exists in memory)
-            flash.appendChild(outerDiv);*/
-            flash("Password and Confirm password must match", "warning");
-            isValid = false;
         }
-        return isValid;
+        else {
+            return false;
+        }
     }
 </script>
 <?php
 require_once(__DIR__ . "/../../partials/flash.php");
 
-/*
-?>
-
-<?php
-session_start();
-include 'xfetchinfo.php';
-//$current_user = $_SESSION['username'];
-//$current_email  = $_SESSION['email'];
-?>
-<html>
-
-<body>  
-<form action="./account_edit.php" class="form" method="POST">
-<input type ="text" id="edit_user" name = "edit_user" placeholder = "Change Username"> <?php echo 'current username is: ' . $current_user; ?>  <br>
-<input type ="text" id="email_edit" name = "email_edit" placeholder = "Change Email"> <?php echo 'current email is: ' . $current_email; ?> <br>
-<input type ="text" id="edit_pw" name = "edit_pw" placeholder = "Change Password"> <br>
-<input type ="text" id="verify_pw" name = "verify_pw" placeholder = "Verifiy Changed Password"> <br>
-<input type ="submit" id = "submit" name = "submit" value="Make Changes"> <br>
-
-<a href="login.php">Go Back to Main Dashboard</a> <br>
-<a href="logout.php">Logout</a> <br>
- <br>
-</form>
-</body>
-
-
-<?php
-include 'db.php';
-$pdo = getDB();
-
-if(isset($_POST['submit'])) {
-  
-  $uid =  $_POST['edit_user'];
-  $email = $_POST['email_edit'];
-  $pw = $_POST['edit_pw'];
-  $verify_pw = $_POST['verify_pw'];
-  
-
-
-  if (preg_match("/[a-zA-Z0-9]+/",$uid)==0 && !empty($uid)) {
-  echo '<script>alert("Please enter in a valid username")</script>';
-  $error = true;
-
-}
-$uStmt = $pdo->prepare("SELECT * FROM Users WHERE username= '$uid'");
-$eStmt = $pdo->prepare("SELECT * FROM Users WHERE email= '$email'");
-$uStmt->execute();
-$eStmt->execute();
-$uResult = $uStmt->fetch(PDO::FETCH_ASSOC);
-$eResult = $eStmt->fetch(PDO::FETCH_ASSOC);
-$error = False;
-
-if($uResult) {
-  echo  '<script>alert("Username already in use, please type in a different username")</script>';
-  $error = True;
-}
-else if ($eResult) {
-  echo '<script>alert("Email already in use, please type in a different email")</script>';
-  $error = True;
-}
-
-
-else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
-  echo  '<script>alert("Invalid email format, please try again")</script>';
-  $error = True;
-}
-
-else if($pw != $verify_pw && !empty($pw)){
-    echo '<script>alert("Passwords do not match please try again")</script>';
-    $error = True;
-}
-  if(!$error){ //no errors
-  $hash_pw = password_hash($pw, PASSWORD_DEFAULT);
-
-  //query through db and insert values
-  if (!empty($pw)) {
-    $statement = $pdo->prepare("UPDATE `Users` SET password = '$hash_pw' WHERE username = '$current_user'");
-    $statement ->execute();
-
-  }
-  if (!empty($email)) {
-    $statement = $pdo->prepare("UPDATE `Users` SET email = '$email' WHERE email = '$current_email'");
-    $statement ->execute();
-
-  }
-  if (!empty($username)) {
-    $statement = $pdo->prepare("UPDATE `Users` SET username = '$uid' WHERE username = '$current_user'");
-    $statement ->execute();
-
-  }
-
-  
-  
-  
-  }
-  
-
-  }
-
-
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
-
-//echo $username . " " . $email; 
-
-
-?>
-</html>
-*/
 ?>

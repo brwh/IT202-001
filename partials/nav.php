@@ -31,10 +31,12 @@ require_once(__DIR__ . "/../lib/functions.php");
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>
             <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
-            <li><a href="<?php echo get_url('create_bank_account.php'); ?>">Create Bank Account</a></li>
+            <li><a href="<?php echo get_url('create_bank_account.php'); ?>">Create Bank Account</a></li> <br>
             <li><a href="<?php echo get_url('my_accounts.php'); ?>">My Bank Accounts</a></li>
             <li><a href="<?php echo get_url('wdt.php'); ?>">Deposit / Withdrawal / Transfer</a></li>
             <li><a href="<?php echo get_url('send_money.php'); ?>">Give Money to a User</a></li>
+            <li><a href="<?php echo get_url('close_account.php'); ?>">Close an Account</a></li>
+            <li><a href="<?php echo get_url('loan.php'); ?>">Pay off a Loan</a></li>
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
